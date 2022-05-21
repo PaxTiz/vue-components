@@ -111,7 +111,11 @@ export default {
     },
 
     onSelectRadio(e, item) {
-      this.form[item.name] = e.target.value;
+      if (item.cast) {
+        this.form[item.name] = new item.cast(e.target.value);
+      } else {
+        this.form[item.name] = e.target.value;
+      }
     },
   },
 };
