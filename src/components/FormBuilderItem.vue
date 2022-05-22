@@ -76,11 +76,10 @@
       >
         <label :for="`${item.name}-${index}`">
           <input
+            v-model="form[item.name]"
             type="checkbox"
             :id="`${item.name}-${index}`"
             :value="option.value"
-            :checked="form[item.name].includes(option.value) ? 'selected' : ''"
-            @input="(e) => onSelectCheckbox(e, item)"
           />
           <p>{{ option.label }}</p>
         </label>
@@ -152,12 +151,6 @@ export default {
 
     onSelectFile(e, item) {
       this.$emit("on-select-file", e, item);
-      this.onInput(item);
-    },
-
-    onSelectCheckbox(e, item) {
-      const { checked, value } = e.target;
-      this.$emit("on-select-checkbox", { checked, value }, item);
       this.onInput(item);
     },
   },

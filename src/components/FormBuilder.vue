@@ -12,7 +12,6 @@
             :error="errors[childItem.name]"
             @on-input="onInput"
             @on-select-file="onSelectFile"
-            @on-select-checkbox="onSelectCheckbox"
           />
         </div>
         <FormBuilderItem
@@ -22,7 +21,6 @@
           :error="errors[item.name]"
           @on-input="onInput"
           @on-select-file="onSelectFile"
-          @on-select-checkbox="onSelectCheckbox"
         />
       </div>
       <button class="form-button" type="submit">Submit</button>
@@ -92,20 +90,6 @@ export default {
 
     onSelectFile(e, item) {
       this.form[item.name] = item.multiple ? e.target.files : e.target.files[0];
-    },
-
-    onSelectCheckbox({ checked, value }, item) {
-      const { name } = item;
-      if (checked) {
-        this.form[name].push(item.cast ? item.cast(value) : value);
-      } else {
-        this.form[name] = this.form[name].filter(
-          (e) => e.toString() !== value.toString()
-        );
-        if (item.cast) {
-          this.form[name] = this.form[name].map((e) => item.cast(e));
-        }
-      }
     },
   },
 };
