@@ -1,6 +1,6 @@
 {
   "name": "@paxtiz/vue-form-builder",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A basic form builder for Vue.js",
   "repository": "https://github.com/PaxTiz/vue-form-builder",
   "author": "Valentin Cernuta <vcernuta3@gmail.com>",
