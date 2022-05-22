@@ -13,10 +13,24 @@ export const minLength = (size, message) => {
 }
 
 /**
+ * Check if a value is greater or equal than {size}
+ */
+export const minValue = (size, message) => {
+    return (value) => (required(message)(value) === true) && value >= size ? true : message
+}
+
+/**
  * Check if a value length is lower or equal than {size}
  */
 export const maxLength = (size, message) => {
     return (value) => (required(message)(value) === true) && value.length <= size ? true : message
+}
+
+/**
+ * Check if a value is lower or equal than {size}
+ */
+export const maxValue = (size, message) => {
+    return (value) => (required(message)(value) === true) && value <= size ? true : message
 }
 
 /**
@@ -32,3 +46,11 @@ export const equals = (correctValue, message) => {
 export const inArray = (values, message) => {
     return (value) => values.includes(value) ? true : message
 }
+
+/**
+ * Check if a value is contains in {string}
+ */
+export const contains = (string, message) => {
+    return (value) => value.includes(string) ? true : message
+}
+
