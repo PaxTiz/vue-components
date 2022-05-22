@@ -162,7 +162,7 @@ export default {
 .form-item {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.5em;
   width: 100%;
   height: min-content;
 }
