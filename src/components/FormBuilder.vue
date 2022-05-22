@@ -81,19 +81,22 @@ export default {
     },
 
     onSubmit() {
+      let canSubmit = true;
       for (const item of this.items) {
-        if (!this.validateItems(item.children ?? [item])) {
-          return;
+        if (!this.validateItems(item.children || [item])) {
+          canSubmit = false;
         }
       }
 
-      this.$emit("submit", this.form);
+      if (canSubmit) {
+        this.$emit("submit", this.form);
+      }
     },
 
     validateItems(items) {
       let canSubmit = true;
       for (const item of items) {
-        for (const validator of item.validators ?? []) {
+        for (const validator of item.validators || []) {
           const valid = validator(this.form[item.name]);
           if (valid !== true) {
             this.errors = { ...this.errors, [item.name]: valid };
