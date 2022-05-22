@@ -162,7 +162,7 @@ export default {
 .form-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 1em;
   width: 100%;
   height: min-content;
 }
@@ -171,8 +171,8 @@ export default {
   font-weight: bold;
 }
 .form-item__input {
-  padding: 8px 16px;
-  border-radius: 4px;
+  padding: 1em 1.5em;
+  border-radius: 0.5em;
   border: 1px solid #c1c1c1;
   resize: none;
   background-color: #fcfcfc;
@@ -188,7 +188,7 @@ textarea.form-item__input {
 .form-item__radio-group {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1em;
 }
 .form-item__checkbox-row,
 .form-item__radio-row {
@@ -199,7 +199,7 @@ textarea.form-item__input {
 .form-item__radio-item label {
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 0.5em;
 }
 .form-item__checkbox-item label p,
 .form-item__radio-item label p {

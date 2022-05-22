@@ -121,7 +121,7 @@ export default {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 2em;
 }
 .form-group {
   display: block;
@@ -129,17 +129,17 @@ export default {
 .form-row {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  gap: 1em;
 }
 
 .form-button {
   width: min-content;
-  padding: 8px 32px;
+  padding: 1em 4em;
   text-transform: uppercase;
   background-color: #c1c1c1;
   color: #000;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.5em;
   cursor: pointer;
 }
 </style>
