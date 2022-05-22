@@ -13,7 +13,6 @@
             @on-input="onInput"
             @on-select-file="onSelectFile"
             @on-select-checkbox="onSelectCheckbox"
-            @on-select-radio="onSelectRadio"
           />
         </div>
         <FormBuilderItem
@@ -24,7 +23,6 @@
           @on-input="onInput"
           @on-select-file="onSelectFile"
           @on-select-checkbox="onSelectCheckbox"
-          @on-select-radio="onSelectRadio"
         />
       </div>
       <button class="form-button" type="submit">Submit</button>
@@ -107,14 +105,6 @@ export default {
         if (item.cast) {
           this.form[name] = this.form[name].map((e) => item.cast(e));
         }
-      }
-    },
-
-    onSelectRadio(e, item) {
-      if (item.cast) {
-        this.form[item.name] = new item.cast(e.target.value);
-      } else {
-        this.form[item.name] = e.target.value;
       }
     },
   },

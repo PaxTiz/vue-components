@@ -101,11 +101,11 @@
       >
         <label :for="`${item.name}-${index}`">
           <input
+            v-model="form[item.name]"
             type="radio"
             :id="`${item.name}-${index}`"
+            :name="item.name"
             :value="option.value"
-            :checked="form[item.name] === option.value ? 'selected' : ''"
-            @input="(e) => onSelectRadio(e, item)"
           />
           <p>{{ option.label }}</p>
         </label>
@@ -158,11 +158,6 @@ export default {
     onSelectCheckbox(e, item) {
       const { checked, value } = e.target;
       this.$emit("on-select-checkbox", { checked, value }, item);
-      this.onInput(item);
-    },
-
-    onSelectRadio(e, item) {
-      this.$emit("on-select-radio", e, item);
       this.onInput(item);
     },
   },
