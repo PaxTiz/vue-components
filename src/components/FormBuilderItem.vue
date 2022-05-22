@@ -1,5 +1,5 @@
 <template>
-  <label :for="item.name" class="form-item">
+  <label :for="item.name" class="form-item" :class="classes">
     <p class="form-item__label">{{ item.label }}</p>
 
     <input
@@ -127,6 +127,7 @@ export default {
       required: true,
     },
     error: String,
+    classes: [String, Array],
   },
 
   computed: {
@@ -163,6 +164,7 @@ export default {
   flex-direction: column;
   gap: 8px;
   width: 100%;
+  height: min-content;
 }
 .form-item__label {
   margin: 0;

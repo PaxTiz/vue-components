@@ -1,31 +1,37 @@
 <template>
-  <div>
-    <h1>Form Builder</h1>
-    <form @submit.prevent="onSubmit" class="form">
-      <div v-for="item in items" :key="item.name" class="form-group">
-        <div v-if="Array.isArray(item.children)" class="form-row">
-          <FormBuilderItem
-            v-for="childItem in item.children"
-            :key="childItem.name"
-            :form="form"
-            :item="childItem"
-            :error="errors[childItem.name]"
-            @on-input="onInput"
-            @on-select-file="onSelectFile"
-          />
-        </div>
+  <form @submit.prevent="onSubmit" class="form">
+    <div v-for="item in items" :key="item.name" class="form-group">
+      <div v-if="Array.isArray(item.children)" class="form-row">
         <FormBuilderItem
-          v-else
+          v-for="childItem in item.children"
+          :key="childItem.name"
           :form="form"
-          :item="item"
-          :error="errors[item.name]"
+          :item="childItem"
+          :error="errors[childItem.name]"
+          :class="classes(childItem)"
           @on-input="onInput"
           @on-select-file="onSelectFile"
         />
       </div>
-      <button class="form-button" type="submit">Submit</button>
-    </form>
-  </div>
+      <FormBuilderItem
+        v-else
+        :form="form"
+        :item="item"
+        :error="errors[item.name]"
+        :class="classes(item)"
+        @on-input="onInput"
+        @on-select-file="onSelectFile"
+      />
+    </div>
+
+    <button
+      class="form-button"
+      :class="classes(button)"
+      :type="button.type || 'submit'"
+    >
+      {{ button.text }}
+    </button>
+  </form>
 </template>
 
 <script>
@@ -40,6 +46,10 @@ export default {
   }),
 
   props: {
+    button: {
+      type: Object,
+      required: true,
+    },
     items: {
       type: Array,
       required: true,
@@ -58,6 +68,18 @@ export default {
   },
 
   methods: {
+    classes(item) {
+      if (!item.classes) {
+        return "";
+      }
+
+      if (Array.isArray(item.classes)) {
+        return item.classes.join(" ");
+      }
+
+      return item.classes;
+    },
+
     onSubmit() {
       for (const item of this.items) {
         if (!this.validateItems(item.children ?? [item])) {
