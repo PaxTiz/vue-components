@@ -5,6 +5,7 @@
     <input
       v-if="isInput"
       v-model="form[item.name]"
+      ref="formBuilderInput"
       :type="item.type"
       :id="item.name"
       :placeholder="placeholder"
@@ -15,6 +16,7 @@
 
     <input
       v-else-if="item.type === 'file'"
+      ref="formBuilderInput"
       type="file"
       :id="item.name"
       :multiple="item.multiple === true"
@@ -27,6 +29,7 @@
     <textarea
       v-else-if="item.type === 'textarea'"
       v-model="form[item.name]"
+      ref="formBuilderInput"
       :id="item.name"
       :placeholder="placeholder"
       :class="{ error }"
@@ -37,6 +40,7 @@
     <select
       v-else-if="item.type === 'select'"
       v-model="form[item.name]"
+      ref="formBuilderInput"
       :id="item.name"
       :multiple="item.multiple === true"
       :name="item.name"
@@ -78,6 +82,7 @@
           <input
             v-model="form[item.name]"
             type="checkbox"
+            ref="formBuilderInput"
             :id="`${item.name}-${index}`"
             :value="option.value"
           />
@@ -102,6 +107,7 @@
           <input
             v-model="form[item.name]"
             type="radio"
+            ref="formBuilderInput"
             :id="`${item.name}-${index}`"
             :name="item.name"
             :value="option.value"
@@ -130,6 +136,18 @@ export default {
     classes: [String, Array],
   },
 
+  mounted() {
+    const input = this.$refs.formBuilderInput;
+    const attributes = this.item.attributes || {};
+    if (Array.isArray(input)) {
+      for (const deepInput of input) {
+        this.setAttributes(deepInput, attributes);
+      }
+    } else {
+      this.setAttributes(input, attributes);
+    }
+  },
+
   computed: {
     isInput() {
       return ["text", "number", "password"].includes(this.item.type);
@@ -146,6 +164,12 @@ export default {
   },
 
   methods: {
+    setAttributes(input, attributes) {
+      for (const [attr, value] of Object.entries(attributes)) {
+        input.setAttribute(attr, value);
+      }
+    },
+
     onInput(item) {
       this.$emit("on-input", item);
     },
