@@ -34,7 +34,7 @@ import { minLength, contains } from "@paxtiz/vue-form-builder"
 export default {
     data: () => ({
         button: {
-            tetx: "Click me :)",
+            text: "Click me :)",
         },
         items: [
             {
@@ -43,11 +43,11 @@ export default {
                 label: "Post name",
                 placeholder: true,
                 validators: [
-                minLength(2, "Name is too short"),
-                contains(
-                    "hello",
-                    "Name must contains the string 'hello'"
-                ),
+                    minLength(2, "Name is too short"),
+                    contains(
+                        "hello",
+                        "Name must contains the string 'hello'"
+                    ),
                 ],
                 classes: ["custom-button"],
             },
