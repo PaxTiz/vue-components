@@ -6,7 +6,7 @@
       v-if="isInput"
       v-model="form[item.name]"
       ref="formBuilderInput"
-      :type="item.type"
+      :type="type"
       :id="item.name"
       :placeholder="placeholder"
       :class="{ error }"
@@ -150,7 +150,21 @@ export default {
 
   computed: {
     isInput() {
-      return ["text", "number", "password"].includes(this.item.type);
+      return [
+        "text",
+        "date",
+        "time",
+        "datetime",
+        "number",
+        "password",
+      ].includes(this.item.type);
+    },
+
+    type() {
+      if (this.item.type === "datetime") {
+        return "datetime-local";
+      }
+      return this.item.type;
     },
 
     placeholder() {
