@@ -11,8 +11,8 @@
     <div class="multiselect__header">
       <span v-if="selected.length === 0">{{ emptySelectedText }}</span>
       <div class="multiselect__selected">
-        <p @click="removeItem(item)" v-for="item in selected" :key="item">
-          <span class="text">{{ item }}</span>
+        <p @click="removeItem(item)" v-for="item in selected" :key="item.value">
+          <span class="text">{{ item.text }}</span>
           <span class="icon">x</span>
         </p>
       </div>
@@ -32,10 +32,10 @@
       <div class="multiselect__options-list">
         <template v-if="filteredValues.length > 0">
           <p
-            @click="addItem(item.value)"
+            @click="addItem(item)"
             v-for="item in filteredValues"
             :key="item.value"
-            :class="{ highlight: selected.includes(item.value) }"
+            :class="{ highlight: isSelected(item) }"
           >
             {{ item.text }}
           </p>
@@ -99,7 +99,7 @@ export default {
 
   methods: {
     addItem(item) {
-      if (this.selected.includes(item)) {
+      if (this.isSelected(item)) {
         this.removeItem(item);
       } else {
         this.updateValue([...this.selected, item]);
@@ -107,7 +107,13 @@ export default {
     },
 
     removeItem(item) {
-      return this.updateValue(this.selected.filter((e) => e !== item));
+      return this.updateValue(
+        this.selected.filter((e) => e.value !== item.value)
+      );
+    },
+
+    isSelected(item) {
+      return this.selected.find((e) => e.value === item.value);
     },
 
     toggle() {
@@ -138,6 +144,7 @@ export default {
   background-color: #fcfcfc;
   color: #000;
   border: 1px solid #c1c1c1;
+  user-select: none;
 }
 .multiselect__header {
   display: flex;
@@ -207,13 +214,17 @@ export default {
 .multiselect__options-list {
   display: flex;
   flex-direction: column;
-  padding-bottom: 0.5em;
   max-height: 200px;
   overflow: scroll;
 }
 .multiselect__options p {
   margin: 0;
   padding: var(--multiselect-small-padding);
+  cursor: pointer;
+}
+.multiselect__options p:last-child {
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
 }
 .multiselect__options p.highlight {
   background-color: #c1c1c1;
