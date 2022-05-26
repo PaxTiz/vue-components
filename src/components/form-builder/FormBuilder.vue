@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import FormBuilderItem from "./FormBuilderItem.vue";
+import FormBuilderItem from "../form-builder/FormBuilderItem.vue";
 
 export default {
   name: "FormBuilder",
