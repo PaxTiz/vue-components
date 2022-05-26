@@ -1,6 +1,6 @@
-import Plugin from './plugin'
+import FormBuilder from './components/form-builder/plugin'
+import Multiselect from './components/multi-select/plugin'
 
-export { default as FormBuilder } from './components/FormBuilder'
 export * from './utils/validators'
+export { FormBuilder, Multiselect }
 
-export default Plugin
