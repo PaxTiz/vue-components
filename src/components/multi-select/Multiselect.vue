@@ -138,7 +138,6 @@ export default {
   background-color: #fcfcfc;
   color: #000;
   border: 1px solid #c1c1c1;
-  cursor: pointer;
 }
 .multiselect__header {
   display: flex;
@@ -176,6 +175,10 @@ export default {
   padding: 0 8px;
   border-top-right-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
+  cursor: pointer;
+}
+.multiselect__toggle {
+  cursor: pointer;
 }
 
 .multiselect__container input,
