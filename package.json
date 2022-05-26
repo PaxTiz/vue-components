@@ -1,8 +1,8 @@
 {
-  "name": "@paxtiz/vue-form-builder",
-  "version": "1.0.4",
-  "description": "A basic form builder for Vue.js",
-  "repository": "https://github.com/PaxTiz/vue-form-builder",
+  "name": "@paxtiz/vue-components",
+  "version": "1.0.0",
+  "description": "Multiple usefull Vue components",
+  "repository": "https://github.com/PaxTiz/vue-components",
   "author": "Valentin Cernuta <vcernuta3@gmail.com>",
   "license": "MIT",
   "main": "./src/index.js",
